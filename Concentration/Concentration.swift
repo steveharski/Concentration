@@ -16,12 +16,14 @@ class Concentration
     var flippedCardsIDs = [Int]()
     
     var score = 0
+    var flips = 0
     
     var indexOfOneAndOnlyFaceUpCard: Int?
     var faceUpCardID: Int?
     
     func chooseCard(at index: Int) {
         if !cards[index].isMatched {
+            flips += cards[index].isFaceUp ? 0 : 1
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // append id of flipped card
                 flippedCardsIDs.append(cards[index].identifier)
