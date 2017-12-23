@@ -18,6 +18,12 @@ class ViewController: UIViewController {
         }
     }
     
+    var scoreCount = 0 {
+        didSet {
+            scoreCountLabel.text = "Score: \(scoreCount)"
+        }
+    }
+    
     @IBOutlet weak var flipCountLabel: UILabel!
     
     @IBOutlet weak var scoreCountLabel: UILabel!
@@ -30,6 +36,7 @@ class ViewController: UIViewController {
         emojiChoices = emojiThemes[randomTheme]!
         updateViewFromModel()
         flipCount = 0
+        scoreCount = 0
     }
     
     @IBAction func touchCard(_ sender: UIButton) {
@@ -37,6 +44,7 @@ class ViewController: UIViewController {
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
+            scoreCount = game.score
         } else {
             print("chosen card was not in cardButtons")
         }
